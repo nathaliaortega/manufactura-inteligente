@@ -1,0 +1,100 @@
+.Layout {
+    text-align: center;
+    max-width: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    width: 100wh;
+  }
+  
+  
+  
+  @media (prefers-reduced-motion: no-preference) {
+    
+  }
+  
+  .Layout-header {
+    min-height: 10vh;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: darkseagreen;
+    padding-left:20px;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(3px + 2vmin);
+    color: white;
+    font-family: 'Roboto',sans-serif;
+  }
+  
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .header-container{
+    width: 95%;
+    padding:20px;
+  }
+  .header-container>a{
+    text-decoration: none;
+    color: white;
+    font-size: calc(3px + 2vmin);
+  }
+  .header-menu{
+    float: left;
+    position: relative;
+    top: 1.5em;
+    left: 0px;
+    align-self: center;
+  }
+  .header-menu>img{
+    width: 2.5em;
+    float:left
+    
+  }
+  .div-open{
+    width: 250px;
+    margin-top: 42px;
+    margin-left: 0em;
+    height: 100%;
+    background-color: rgb(215, 230, 215);
+    border-radius: 8px;
+    font-size: 1.2em;
+    z-index: 100;
+    padding:20px;
+    padding-top:20px;
+    position: fixed;
+    text-align: start;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+  .div-open>a{
+    padding-top: 30px;
+    display: block;
+    color: rgb(53, 71, 53);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .div-close{
+    visibility: none;
+    font-size: 0px;
+  }
+  
+  .div-open>a:hover {
+    font-weight: 600;
+  }
+  
+  /* selected link */
+  .active {
+    font-weight: 700;
+  }
+  main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
