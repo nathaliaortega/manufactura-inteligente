@@ -5,6 +5,7 @@
     width: 90%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
   
   
@@ -18,7 +19,9 @@
     margin-top:20px;
     border-color: transparent;
     padding: 5px;
-    min-width: 20em;
+    max-width: 100%;
+    width: 20em;
+    cursor: pointer;
   }
   
   @keyframes App-logo-spin {
@@ -33,7 +36,6 @@
   .Compression-container{
     width: 100vw;
     max-width: 90%;
-    
     padding: 20px;
     text-align: center;
   }
@@ -43,5 +45,28 @@
     min-width: 100%;
     width: 20em;
   }
-  
+  .Compression-main{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+  }
+  .pred{
+    min-width: 50%;
+    border-right: 1px gray;
+  }
+  .pred>img{
+    width: 100%;
+    margin-top:10px;
+  }
+  .data{
+    min-width: 50%;
+    border-right: 1px gray;
+  }
+  .pred-mape{
+    font-size: 1.8em;
+  }
+  .mape-desc{
+    font-size: 0.8em;
+  }
   

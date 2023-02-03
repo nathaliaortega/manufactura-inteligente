@@ -16,17 +16,17 @@ function Layout({children}) {
           <div className="header-menu">
             <img src={burger_img} onClick={handleOnOpen} />
           </div>
-          <a href='/'><h1>Manufactura Inteligente del concreto</h1></a>
+          <NavLink  to='/'><h1>Manufactura Inteligente del concreto</h1></NavLink>
         </div>
       </header>
       
       <div className={open ? `header-menu div-open` : `header-menu div-close`}>
         {/* <a href="/">Home</a>
         <a href="/compression">Compresion</a> */}
-        <NavLink exact activeClassName='a-is-active' to='/'>Home</NavLink>
-        <NavLink activeClassName='is-active' to='/compression'>Compresion</NavLink>
-        <NavLink activeClassName='is-active' to='/flexion'>Flexion</NavLink>
-        <NavLink activeClassName='is-active' to='/asentamiento'>Asentamiento</NavLink>
+        <NavLink className={({isActive}) => (isActive ? "is-active" : 'none')}  to='/'>Home</NavLink>
+        <NavLink className={({isActive}) => (isActive ? "is-active" : 'none')}  to='/compression'>Compresion</NavLink>
+        <NavLink className={({isActive}) => (isActive ? "is-active" : 'none')}  to='/flexion'>Flexion</NavLink>
+        <NavLink className={({isActive}) => (isActive ? "is-active" : 'none')}  to='/asentamiento'>Asentamiento</NavLink>
       </div>
        
       <main >
