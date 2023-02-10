@@ -1,4 +1,4 @@
-.Compression {
+.AsentamientoData {
     text-align: center;
     height: 100%;
     width: 90%;
@@ -33,21 +33,21 @@
     }
   }
   
-  .Compression-container{
+  .AsentamientoData-container{
     width: 100vw;
     max-width: 100%;
     padding: 20px;
     text-align: center;
   }
-  .Compression-container>h2{
+  .AsentamientoData-container>h2{
     font-size: 1.5em;
     font-weight: 600;
     min-width: 90%;
   }
-  .Compression-main{
+  .AsentamientoData-main{
     width: 100%;
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
     justify-content: center;
   }
   .pred{

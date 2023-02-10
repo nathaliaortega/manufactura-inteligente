@@ -1,4 +1,4 @@
-.Compression {
+.CompressionData {
     text-align: center;
     height: 100%;
     width: 90%;
@@ -33,18 +33,18 @@
     }
   }
   
-  .Compression-container{
+  .CompressionData-container{
     width: 100vw;
     max-width: 100%;
     padding: 20px;
     text-align: center;
   }
-  .Compression-container>h2{
+  .CompressionData-container>h2{
     font-size: 1.5em;
     font-weight: 600;
     min-width: 90%;
   }
-  .Compression-main{
+  .CompressionData-main{
     width: 100%;
     display: flex;
     flex-direction:column;

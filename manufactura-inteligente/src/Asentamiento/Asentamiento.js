@@ -1,19 +1,19 @@
-import "./Compression.css";
+import "./Asentamiento.css";
 import React, { useState } from "react";
 import axios from "axios";
-import lines from '../icons/lines.png'
-import table from '../icons/table.png'
-import line_scatter from '../icons/line_scatter.png'
-function Compression() {
+import lines from '../icons/lines_asent.png'
+import table from '../icons/table_asent.png'
+import line_scatter from '../icons/line_scatter_asent.png'
+function Asentamiento() {
   const [post, setPost] = useState();
   const [loading, setLoading] = useState(false);
   const baseURL =
     "https://p2qmbr4yh5.execute-api.us-east-1.amazonaws.com/staging";
   const data_pred = {
     data: {
-      compression: true,
+      compression: false,
       flexion: false,
-      asentamiento: false,
+      asentamiento: true,
       data: false,
     },
   };
@@ -31,11 +31,11 @@ function Compression() {
   };
 
   return (
-    <div className="Compression">
-      <div className="Compression-container">
-        <h2>Prediccion de la resistencia a la compresión (28d)</h2>
+    <div className="Asentamiento">
+      <div className="Asentamiento-container">
+        <h2>Prediccion del asentamiento</h2>
       </div>
-      <div className="Compression-main">
+      <div className="Asentamiento-main">
         <div className="pred">
           <h3>Predecir el MAPE del modelo</h3>
           {(!post && loading==true)?
@@ -55,10 +55,10 @@ function Compression() {
             <button className="button" onClick={sendRequest}>Re-evaluar modelos</button>
           )}
         </div>
-        
+
       </div>
     </div>
   );
 }
 
-export default Compression;
+export default Asentamiento;

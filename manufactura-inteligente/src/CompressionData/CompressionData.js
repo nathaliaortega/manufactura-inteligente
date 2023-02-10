@@ -1,10 +1,10 @@
-import "./Compression.css";
+import "./CompressionData.css";
 import React, { useState } from "react";
 import axios from "axios";
 import lines from '../icons/lines.png'
 import table from '../icons/table.png'
 import line_scatter from '../icons/line_scatter.png'
-function Compression() {
+function CompressionData() {
   const [post, setPost] = useState();
   const [loading, setLoading] = useState(false);
   const baseURL =
@@ -14,7 +14,7 @@ function Compression() {
       compression: true,
       flexion: false,
       asentamiento: false,
-      data: false,
+      data: true,
     },
   };
 
@@ -31,13 +31,13 @@ function Compression() {
   };
 
   return (
-    <div className="Compression">
-      <div className="Compression-container">
+    <div className="CompressionData">
+      <div className="CompressionData-container">
         <h2>Prediccion de la resistencia a la compresión (28d)</h2>
       </div>
-      <div className="Compression-main">
+      <div className="CompressionData-main">
         <div className="pred">
-          <h3>Predecir el MAPE del modelo</h3>
+          <h3>Predecir con tus propios datos</h3>
           {(!post && loading==true)?
           <p>cargando...</p>
           :(post && loading==false)? (
@@ -45,14 +45,14 @@ function Compression() {
               <p className="pred-mape">{post}%</p>
               <p className="mape-desc">MAPE. El error porcentual absoluto medio (MAPE) <br/>expresa la exactitud como un porcentaje del error. Debido a que el MAPE es un porcentaje, puede ser más fácil de entender que otros estadísticos de medición de exactitud. Por ejemplo, si el MAPE es 5, en promedio, el pronóstico está errado en un 5%.</p>
               <p className="mape-desc">*Si requiere utilizar el modelo presentado, comuniquese con el administrador</p>
-              <button className="button" onClick={sendRequest}>Re-evaluar modelos</button>
+              {/* <button className="button" onClick={sendRequest}>Re-evaluar modelos</button> */}
               <img src={lines}/>
               <img src={table}/>
               <p>Scatter plot del mejor modelo:</p>
               <img src={line_scatter}/>
             </>
           ) : (
-            <button className="button" onClick={sendRequest}>Re-evaluar modelos</button>
+            <button className="button" onClick={sendRequest}>Predecir la compresión</button>
           )}
         </div>
         
@@ -61,4 +61,4 @@ function Compression() {
   );
 }
 
-export default Compression;
+export default CompressionData;
