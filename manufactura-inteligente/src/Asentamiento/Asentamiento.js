@@ -5,7 +5,7 @@ import lines from '../icons/lines_asent.png'
 import table from '../icons/table_asent.png'
 import line_scatter from '../icons/line_scatter_asent.png'
 function Asentamiento() {
-  const [post, setPost] = useState();
+  const [post, setPost] = useState(3.7);
   const [loading, setLoading] = useState(false);
   const baseURL =
     "https://p2qmbr4yh5.execute-api.us-east-1.amazonaws.com/staging";

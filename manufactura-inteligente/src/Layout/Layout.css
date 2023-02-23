@@ -25,6 +25,8 @@
     font-size: calc(3px + 2vmin);
     color: white;
     font-family: 'Roboto',sans-serif;
+    position: fixed;
+    width: 100%;
   }
   
   
@@ -39,6 +41,7 @@
   .header-container{
     width: 95%;
     padding:20px;
+    
   }
   .header-container>a{
     text-decoration: none;
