@@ -8,6 +8,7 @@ function AsentamientoData() {
   const [post, setPost] = useState(29.0);
   const [fields, setFields] = useState({});
   const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(true);
   const [loading, setLoading] = useState(false);
   const baseURL =
     "https://p2qmbr4yh5.execute-api.us-east-1.amazonaws.com/staging";
@@ -89,10 +90,11 @@ function AsentamientoData() {
     "TRUCK_CODE",
   ];
 
-  const sendRequest = (e) => {
+  const sendRequest = (e, data) => {
+    console.log(data);
     setLoading(true);
     axios
-      .post(baseURL, data_pred, {
+      .post(baseURL, data, {
         headers: {
           "Access-Control-Allow-Headers":
             "Access-Control-Allow-Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -105,24 +107,50 @@ function AsentamientoData() {
         setLoading(false);
       });
   };
-  const handleChange=(field, e)=> {
-    let fields_handle = fields.fields;
+  const handleChange = (field, e) => {
+    let fields_handle = fields;
     fields_handle[field] = e.target.value;
     setFields({ fields });
   };
-  const handleValidation=(e) =>{
-    e.preventDefault()
-    let fields_handle = fields.fields;
+  const handleValidation = (e) => {
+    e.preventDefault();
+    let fields_handle = fields;
+    console.log(fields);
     let errors_handle = {};
-    let formIsValid = true;
-
-    //Name
-    if (fields_handle["AG GRUESO 3/4IN TRIT PE?A LAV BELLO_Cantidad_Real"]<0) {
-      formIsValid = false;
-      errors_handle["AG GRUESO 3/4IN TRIT PE?A LAV BELLO_Cantidad_Real"] = "No puede ser menor a 0";
+    const re = /^[0-9\b]+$/;
+    columns.map((label_name, i) => {
+      if (fields_handle[label_name] < 0) {
+        setIsValid(false);
+        errors_handle[label_name] = "No puede ser menor a 0";
+      }
+    });
+    columns.map((label_name, i) => {
+      if (fields_handle[label_name] == "" || !re.test(e.target.value)) {
+        setIsValid(false);
+        errors_handle[label_name] = "No puede estar vacio y debe se run numero";
+      }
+    });
+    if (fields_handle["TEMPERATURA"] < 10) {
+      setIsValid(false);
+      errors_handle["TEMPERATURA"] = "No puede ser menor a 10";
     }
-    setErrors(errors_handle)
-    console.log(fields_handle["AG GRUESO 3/4IN TRIT PE?A LAV BELLO_Cantidad_Real"])
+    if (fields_handle["TEMPERATURA"] > 35) {
+      setIsValid(false);
+      errors_handle["TEMPERATURA"] = "No puede ser mayor a 35";
+    }
+    setErrors(errors_handle);
+
+    if (isValid) {
+      let data = {
+        data: "0.0000000, 0.0000000, 0.0000000, 0.0000000,0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 7.0950000, 1.1000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 6.9100000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 5.8900000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 2.3390000, 0.0000000, 0.0000000, 1.5020000, 7.0000000, 0.0000000, 0.0000000, 5.0200000, 0.0000000, 7.0000000, 5.5270293, 1.5200000, 1.0980000, 0.0000000, 3.4800000, 0.0000000, 0.0000000, 0.0000000, 1.0720000, 0.0000000, 0.0000000, 0.0000000, 7.0000000, 2.8000000, 5.5270293, 9.1300000",
+      };
+      let arr_data = [];
+      columns.map((label_name, i) => {
+        arr_data.push(fields_handle[label_name]);
+      });
+      arr_data = arr_data.toString();
+      sendRequest(e, { data: data });
+    }
   };
 
   return (
@@ -133,39 +161,48 @@ function AsentamientoData() {
       <div className="AsentamientoData-main">
         <div className="pred">
           <h3>Predecir con tus propios datos</h3>
-          <form
-            onSubmit={(e)=>handleValidation(e)}>
-              {columns.map((label_name, i) => (
-                <label key={i}>
-                  <label>{label_name}</label>
-                  <input type="text" name={label_name} onChange={(e)=>handleChange(label_name, e)}/>
-                  <span style={{ color: "red" }}>
-                    {errors[label_name]}
-                  </span>
-                </label>
-              ))}
+          <form onSubmit={(e) => handleValidation(e)}>
+            {columns.map((label_name, i) => (
+              <label key={i}>
+                <label>{label_name}</label>
+                <input
+                  type="text"
+                  name={label_name}
+                  onChange={(e) => handleChange(label_name, e)}
+                  defaultValue={1}
+                />
+                <span style={{ color: "red" }}>{errors[label_name]}</span>
+              </label>
+            ))}
 
-              <br />
-              <button className="button" type="submit">
-                Predecir
-              </button>
-            </form>
+            <br />
+            {isValid ? (
+              <></>
+            ) : (
+              <span style={{ color: "red" }}>
+                Existen errores en los campos `{isValid.toString()}`
+              </span>
+            )}
+            <button className="button" type="submit">
+              Predecir
+            </button>
+          </form>
           {!post && loading == true ? (
             <p>cargando...</p>
           ) : post && loading == false ? (
             <>
               <h3>La prediccion para sus datos es:</h3>
               <p className="pred-mape">{post}</p>
-              <label>Recuerda que esta prediccion puede tener un error de aproximadamente el 4%</label>
-              
-              
+              <label>
+                Recuerda que esta prediccion puede tener un error de
+                aproximadamente el 4%
+              </label>
             </>
           ) : (
-            <>
-            </>
+            <></>
           )}
-          <br/>
-          <br/>
+          <br />
+          <br />
         </div>
       </div>
     </div>
