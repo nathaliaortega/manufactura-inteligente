@@ -61,6 +61,7 @@ function FlexionData() {
   ];
 
   const sendRequest = (e, data) => {
+    
     const data_pred = {
       data: {
         compression: true,
@@ -87,34 +88,41 @@ function FlexionData() {
   };
   const handleChange = (field, e) => {
     let fields_handle = fields;
-    fields_handle[field] = e.target.value;
-    setFields({ fields });
+    console.log(field)
+    setFields(fields => ({
+      ...fields,
+      [""+field.toString()+""] : e.target.value
+    }))
+    // fields_handle[field] = e.target.value;
+    // console.log(fields_handle)
+    // setFields(fields);
   };
   const handleValidation = (e) => {
     e.preventDefault();
     let fields_handle = fields;
     let errors_handle = {};
     const re = /^[0-9\b]+$/;
-    // columns.map((label_name, i) => {
-    //   if (fields_handle[label_name] < 0) {
-    //     setIsValid(false);
-    //     errors_handle[label_name] = "No puede ser menor a 0";
-    //   }
-    // });
-    // columns.map((label_name, i) => {
-    //   if (fields_handle[label_name] == "" || !re.test(e.target.value)) {
-    //     setIsValid(false);
-    //     errors_handle[label_name] = "No puede estar vacio y debe se run numero";
-    //   }
-    // });
-    // if (fields_handle["TEMPERATURA"] < 10) {
-    //   setIsValid(false);
-    //   errors_handle["TEMPERATURA"] = "No puede ser menor a 10";
-    // }
-    // if (fields_handle["TEMPERATURA"] > 35) {
-    //   setIsValid(false);
-    //   errors_handle["TEMPERATURA"] = "No puede ser mayor a 35";
-    // }
+    columns.map((label_name, i) => {
+      
+      if (fields_handle[label_name] < 0) {
+        setIsValid(false);
+        errors_handle[label_name] = "No puede ser menor a 0";
+      }
+    });
+    columns.map((label_name, i) => {
+      if (fields_handle[label_name] == "" || re.test(e.target.value)) {
+        setIsValid(false);
+        errors_handle[label_name] = "No puede estar vacio y debe ser un numero";
+      }
+    });
+    if (fields_handle["TEMPERATURA"] > 10) {
+      setIsValid(false);
+      errors_handle["TEMPERATURA"] = "No puede ser menor a 10";
+    }
+    if (fields_handle["TEMPERATURA"] < 35) {
+      setIsValid(false);
+      errors_handle["TEMPERATURA"] = "No puede ser mayor a 35";
+    }
     setErrors(errors_handle);
 
     if (isValid) {
@@ -124,8 +132,8 @@ function FlexionData() {
       columns.map((label_name, i) => {
         arr_data.push(fields_handle[label_name]);
       });
-      arr_data = arr_data.toString();
-      sendRequest(e, data);
+      let arr_data_str = arr_data.toString();
+      sendRequest(e, arr_data_str);
     }
   };
 
