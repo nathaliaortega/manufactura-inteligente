@@ -5,7 +5,7 @@ import lines from "../icons/lines.png";
 import table from "../icons/table.png";
 import line_scatter from "../icons/line_scatter.png";
 function AsentamientoData() {
-  const [post, setPost] = useState(29.0);
+  const [post, setPost] = useState({});
   const [fields, setFields] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);
@@ -91,10 +91,18 @@ function AsentamientoData() {
   ];
 
   const sendRequest = (e, data) => {
-    console.log(data);
+    const data_pred = {
+      data: {
+        compression: true,
+        flexion: false,
+        asentamiento: false,
+        data: true,
+        body: data,
+      },
+    };
     setLoading(true);
     axios
-      .post(baseURL, data, {
+      .post(baseURL, data_pred, {
         headers: {
           "Access-Control-Allow-Headers":
             "Access-Control-Allow-Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -115,41 +123,39 @@ function AsentamientoData() {
   const handleValidation = (e) => {
     e.preventDefault();
     let fields_handle = fields;
-    console.log(fields);
     let errors_handle = {};
     const re = /^[0-9\b]+$/;
-    columns.map((label_name, i) => {
-      if (fields_handle[label_name] < 0) {
-        setIsValid(false);
-        errors_handle[label_name] = "No puede ser menor a 0";
-      }
-    });
-    columns.map((label_name, i) => {
-      if (fields_handle[label_name] == "" || !re.test(e.target.value)) {
-        setIsValid(false);
-        errors_handle[label_name] = "No puede estar vacio y debe se run numero";
-      }
-    });
-    if (fields_handle["TEMPERATURA"] < 10) {
-      setIsValid(false);
-      errors_handle["TEMPERATURA"] = "No puede ser menor a 10";
-    }
-    if (fields_handle["TEMPERATURA"] > 35) {
-      setIsValid(false);
-      errors_handle["TEMPERATURA"] = "No puede ser mayor a 35";
-    }
-    setErrors(errors_handle);
+    // columns.map((label_name, i) => {
+    //   if (fields_handle[label_name] < 0) {
+    //     setIsValid(false);
+    //     errors_handle[label_name] = "No puede ser menor a 0";
+    //   }
+    // });
+    // columns.map((label_name, i) => {
+    //   if (fields_handle[label_name] == "" || !re.test(e.target.value)) {
+    //     setIsValid(false);
+    //     errors_handle[label_name] = "No puede estar vacio y debe se run numero";
+    //   }
+    // });
+    // if (fields_handle["TEMPERATURA"] < 10) {
+    //   setIsValid(false);
+    //   errors_handle["TEMPERATURA"] = "No puede ser menor a 10";
+    // }
+    // if (fields_handle["TEMPERATURA"] > 35) {
+    //   setIsValid(false);
+    //   errors_handle["TEMPERATURA"] = "No puede ser mayor a 35";
+    // }
+    // setErrors(errors_handle);
 
     if (isValid) {
-      let data = {
-        data: "0.0000000, 0.0000000, 0.0000000, 0.0000000,0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 7.0950000, 1.1000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 6.9100000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 5.8900000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 2.3390000, 0.0000000, 0.0000000, 1.5020000, 7.0000000, 0.0000000, 0.0000000, 5.0200000, 0.0000000, 7.0000000, 5.5270293, 1.5200000, 1.0980000, 0.0000000, 3.4800000, 0.0000000, 0.0000000, 0.0000000, 1.0720000, 0.0000000, 0.0000000, 0.0000000, 7.0000000, 2.8000000, 5.5270293, 9.1300000",
-      };
+      const data =
+        "0.0000000, 0.0000000, 0.0000000, 0.0000000,0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 7.0950000, 1.1000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 6.9100000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 5.8900000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 2.3390000, 0.0000000, 0.0000000, 1.5020000, 7.0000000, 0.0000000, 0.0000000, 5.0200000, 0.0000000, 7.0000000, 5.5270293, 1.5200000, 1.0980000, 0.0000000, 3.4800000, 0.0000000, 0.0000000, 0.0000000, 1.0720000, 0.0000000, 0.0000000, 0.0000000, 7.0000000";
       let arr_data = [];
       columns.map((label_name, i) => {
         arr_data.push(fields_handle[label_name]);
       });
       arr_data = arr_data.toString();
-      sendRequest(e, { data: data });
+      sendRequest(e, data);
     }
   };
 
