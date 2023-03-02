@@ -5,7 +5,7 @@ import lines from "../icons/lines.png";
 import table from "../icons/table.png";
 import line_scatter from "../icons/line_scatter.png";
 function AsentamientoData() {
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(false);
   const [fields, setFields] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);

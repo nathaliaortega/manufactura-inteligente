@@ -5,7 +5,7 @@ import lines from "../icons/lines.png";
 import table from "../icons/table.png";
 import line_scatter from "../icons/line_scatter.png";
 function FlexionData() {
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(false);
   const [fields, setFields] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);
@@ -61,7 +61,6 @@ function FlexionData() {
   ];
 
   const sendRequest = (e, data) => {
-    console.log(data);
     const data_pred = {
       data: {
         compression: true,
@@ -71,7 +70,6 @@ function FlexionData() {
         body: data,
       },
     };
-    console.log(data_pred);
     setLoading(true);
     axios
       .post(baseURL, data_pred, {
