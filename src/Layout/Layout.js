@@ -37,7 +37,7 @@ function Layout({ children }) {
         </NavLink>
 
         <Accordion>
-          <AccordionSummary>Prediccion de la compresión</AccordionSummary>
+          <AccordionSummary>Prediccion de la resistencia a la compresión</AccordionSummary>
           <AccordionDetails>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
@@ -54,7 +54,7 @@ function Layout({ children }) {
           </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary>Prediccion de la flexión</AccordionSummary>
+          <AccordionSummary>Prediccion de la resistencia a la flexión</AccordionSummary>
           <AccordionDetails>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
