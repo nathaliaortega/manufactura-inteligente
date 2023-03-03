@@ -37,12 +37,17 @@
     width: 90%;
     padding: 20px;
     text-align: center;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .Home-container>h2{
     font-size: 2em;
     font-weight: normal;
     margin-top: 3em;
+  }
+  .Home-container>p{
+    width: 80%;
   }
   
   
