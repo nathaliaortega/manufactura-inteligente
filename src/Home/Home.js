@@ -30,6 +30,12 @@ function Home() {
              provenientes de las bases de datos de concreto. Esta herramienta, facilita su 
              implementación en el sector de la manufactura para experimentos, nuevos desarrollos o desarrollos existentes.<br/><br/> 
 
+            Tenga presente que todas las predicciones tienen un error asociado.<br/>
+            Flexion: 0.057%<br/>
+            Compresion: 7.3%<br/>
+            Asentamiento: 3.7%<br/>
+
+
             </p>
         </div>
       {/* <div className="upload-files">

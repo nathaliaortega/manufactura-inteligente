@@ -37,53 +37,53 @@ function Layout({ children }) {
         </NavLink>
 
         <Accordion>
-          <AccordionSummary>Compresión</AccordionSummary>
+          <AccordionSummary>Prediccion de la compresión</AccordionSummary>
           <AccordionDetails>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/compression"
             >
-              Evaluacion de modelos
+             Mostrar evaluación de los modelos
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/compression-data"
             >
-              Entrenar con tus propios datos
+              Predecir con datos
             </NavLink>
           </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary>Flexión</AccordionSummary>
+          <AccordionSummary>Prediccion de la flexión</AccordionSummary>
           <AccordionDetails>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/flexion"
             >
-              Evaluacion de modelos
+             Mostrar evaluación de los modelos
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/flexion-data"
             >
-              Entrenar con tus propios datos
+              Predecir con datos
             </NavLink>
           </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary>Asentamiento</AccordionSummary>
+          <AccordionSummary>Prediccion del asentamiento</AccordionSummary>
           <AccordionDetails>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/asentamiento"
             >
-              Evaluacion de modelos
+             Mostrar evaluación de los modelos
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "is-active" : "link-menu")}
               to="/asentamiento-data"
             >
-              Entrenar con tus propios datos
+              Predecir con datos
             </NavLink>
           </AccordionDetails>
         </Accordion>

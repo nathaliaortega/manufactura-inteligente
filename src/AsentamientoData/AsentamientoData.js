@@ -175,12 +175,12 @@ function AsentamientoData() {
             <p>cargando...</p>
           ) : post && loading == false ? (
             <>
-              <h3>La prediccion para sus datos es:</h3>
+              <h3>La prediccion del asentamiento para sus datos es:</h3>
               <p className="pred-mape">{post}</p>
-              <label>
+              {/* <label>
                 Recuerda que esta prediccion puede tener un error de
                 aproximadamente el 4%
-              </label>
+              </label> */}
             </>
           ) : (
             <></>
